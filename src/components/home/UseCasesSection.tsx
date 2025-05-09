@@ -76,15 +76,10 @@ const UseCasesSection: React.FC = () => {
         
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold mb-6 text-gradient">
-            Trusted by Fortune 500 Companies Worldwide
+            Ready to Transform Your Customer Experience
           </h3>
           <div className="flex flex-wrap justify-center items-center gap-12 opacity-70">
-            {/* Company logos would go here in a real implementation */}
-            <div className="text-xl font-bold text-gradient">ACME Inc.</div>
-            <div className="text-xl font-bold text-gradient">GlobalTech</div>
-            <div className="text-xl font-bold text-gradient">FutureCorp</div>
-            <div className="text-xl font-bold text-gradient">InnovateX</div>
-            <div className="text-xl font-bold text-gradient">OmegaSys</div>
+            {/* Placeholder for company logos or trust badges */}
           </div>
         </div>
       </div>

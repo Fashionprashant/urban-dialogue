@@ -7,23 +7,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 const messageData = [
-  { name: 'Jan', value: 3000 },
-  { name: 'Feb', value: 2500 },
-  { name: 'Mar', value: 5000 },
-  { name: 'Apr', value: 4000 },
-  { name: 'May', value: 5000 },
-  { name: 'Jun', value: 4800 },
-  { name: 'Jul', value: 6200 },
+  { name: 'Jan', value: 0 },
+  { name: 'Feb', value: 0 },
+  { name: 'Mar', value: 0 },
+  { name: 'Apr', value: 0 },
+  { name: 'May', value: 0 },
+  { name: 'Jun', value: 0 },
+  { name: 'Jul', value: 0 },
 ];
 
 const peakTimeData = [
-  { name: '9 AM', value: 45 },
-  { name: '10 AM', value: 75 },
-  { name: '11 AM', value: 60 },
-  { name: '12 PM', value: 65 },
-  { name: '1 PM', value: 55 },
-  { name: '2 PM', value: 85 },
-  { name: '3 PM', value: 70 },
+  { name: '9 AM', value: 0 },
+  { name: '10 AM', value: 0 },
+  { name: '11 AM', value: 0 },
+  { name: '12 PM', value: 0 },
+  { name: '1 PM', value: 0 },
+  { name: '2 PM', value: 0 },
+  { name: '3 PM', value: 0 },
 ];
 
 interface StatCardProps {
@@ -66,25 +66,25 @@ const DashboardContent: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <StatCard 
             title="Total Chats" 
-            value="24,521" 
+            value="0" 
             icon={<MessageSquare className="h-4 w-4" />} 
             infoTooltip="Total number of chat conversations initiated with your AI chatbot" 
           />
           <StatCard 
             title="Total Leads" 
-            value="2,845" 
+            value="0" 
             icon={<Users className="h-4 w-4" />} 
             infoTooltip="Number of unique visitors who provided contact information" 
           />
           <StatCard 
             title="Tokens Used" 
-            value="1.2M" 
+            value="0" 
             icon={<MessageSquare className="h-4 w-4" />} 
             infoTooltip="Total AI tokens consumed by your chatbot instances" 
           />
           <StatCard 
             title="Remaining Tokens" 
-            value="4.8M" 
+            value="0" 
             icon={<CreditCard className="h-4 w-4" />} 
             infoTooltip="Available tokens in your current plan" 
           />
@@ -206,17 +206,17 @@ const DashboardContent: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <div className="text-sm text-muted-foreground">Last 7 days</div>
-                  <div className="font-medium">2,845</div>
+                  <div className="font-medium">0</div>
                 </div>
                 
                 <div className="flex justify-between">
                   <div className="text-sm text-muted-foreground">Last 30 days</div>
-                  <div className="font-medium">12,267</div>
+                  <div className="font-medium">0</div>
                 </div>
                 
                 <div className="flex justify-between items-center pt-4">
                   <div className="text-sm text-muted-foreground">Growth</div>
-                  <div className="font-medium text-green-500">+24.5%</div>
+                  <div className="font-medium text-green-500">0%</div>
                 </div>
                 
                 <Button className="w-full bg-urban-teal hover:bg-urban-teal/90">
