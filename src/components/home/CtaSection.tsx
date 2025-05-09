@@ -1,15 +1,13 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
-import { AuthModal } from '@/components/ui/auth-modal';
 
 interface CtaSectionProps {
   onPricingClick: () => void;
+  onGetStartedClick: () => void;
 }
 
-const CtaSection: React.FC<CtaSectionProps> = ({ onPricingClick }) => {
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-
+const CtaSection: React.FC<CtaSectionProps> = ({ onPricingClick, onGetStartedClick }) => {
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-5xl mx-auto glass-morphism rounded-2xl p-8 md:p-12 bg-gradient-to-br from-urban-dark-2/80 to-urban-dark-3/80">
@@ -29,7 +27,7 @@ const CtaSection: React.FC<CtaSectionProps> = ({ onPricingClick }) => {
             <Button 
               size="lg" 
               className="bg-green-500 hover:bg-green-600 px-8 rounded-full"
-              onClick={() => setIsAuthModalOpen(true)}
+              onClick={onGetStartedClick}
             >
               Start Free Trial
             </Button>
@@ -81,12 +79,6 @@ const CtaSection: React.FC<CtaSectionProps> = ({ onPricingClick }) => {
           </p>
         </div>
       </div>
-      
-      {/* Auth Modal */}
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-      />
     </section>
   );
 };

@@ -1,17 +1,13 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
-import { AuthModal } from '@/components/ui/auth-modal';
-import { useNavigate } from 'react-router-dom';
 
 interface HeroSectionProps {
   onPricingClick: () => void;
+  onGetStartedClick: () => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ onPricingClick }) => {
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const navigate = useNavigate();
-
+const HeroSection: React.FC<HeroSectionProps> = ({ onPricingClick, onGetStartedClick }) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 z-10 overflow-hidden pt-20">
       {/* Decorative elements */}
@@ -44,7 +40,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onPricingClick }) => {
           <Button 
             size="lg" 
             className="bg-green-500 hover:bg-green-600 px-8 rounded-full text-lg h-14"
-            onClick={() => setIsAuthModalOpen(true)}
+            onClick={onGetStartedClick}
           >
             Get Started For Free
           </Button>
