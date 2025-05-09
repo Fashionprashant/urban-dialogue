@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
-const messageData = [
+// Empty data for charts
+const emptyMessageData = [
   { name: 'Jan', value: 0 },
   { name: 'Feb', value: 0 },
   { name: 'Mar', value: 0 },
@@ -16,7 +17,7 @@ const messageData = [
   { name: 'Jul', value: 0 },
 ];
 
-const peakTimeData = [
+const emptyPeakTimeData = [
   { name: '9 AM', value: 0 },
   { name: '10 AM', value: 0 },
   { name: '11 AM', value: 0 },
@@ -58,12 +59,12 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, icon, infoTooltip }) 
 
 const DashboardContent: React.FC = () => {
   return (
-    <div className="ml-64 p-6 bg-urban-dark min-h-screen">
+    <div className="ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
       <div>
         <h1 className="text-2xl font-bold mb-1">AI Chatbot Dashboard</h1>
         <p className="text-muted-foreground mb-6">View and manage your chatbot analytics and performance</p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <StatCard 
             title="Total Chats" 
             value="0" 
@@ -91,19 +92,19 @@ const DashboardContent: React.FC = () => {
         </div>
         
         <Card className="mb-8 bg-urban-dark-3 border-none">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <div className="flex items-center">
+          <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+            <div className="flex items-center mb-4 sm:mb-0">
               <CardTitle className="text-lg font-medium">Message Activity</CardTitle>
               <Button variant="ghost" size="icon" className="ml-1 h-5 w-5">
                 <Info className="h-4 w-4" />
               </Button>
             </div>
             
-            <Tabs defaultValue="messages">
-              <TabsList className="bg-urban-dark-2">
-                <TabsTrigger value="messages">Messages</TabsTrigger>
-                <TabsTrigger value="tokens">Tokens</TabsTrigger>
-                <TabsTrigger value="sessions">Sessions</TabsTrigger>
+            <Tabs defaultValue="messages" className="w-full sm:w-auto">
+              <TabsList className="bg-urban-dark-2 w-full sm:w-auto">
+                <TabsTrigger value="messages" className="flex-1 sm:flex-initial">Messages</TabsTrigger>
+                <TabsTrigger value="tokens" className="flex-1 sm:flex-initial">Tokens</TabsTrigger>
+                <TabsTrigger value="sessions" className="flex-1 sm:flex-initial">Sessions</TabsTrigger>
               </TabsList>
             </Tabs>
           </CardHeader>
@@ -111,7 +112,7 @@ const DashboardContent: React.FC = () => {
           <CardContent>
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={messageData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                <AreaChart data={emptyMessageData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                   <defs>
                     <linearGradient id="colorPurple" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="#6b46c1" stopOpacity={0.8} />
@@ -129,7 +130,7 @@ const DashboardContent: React.FC = () => {
                     axisLine={false} 
                     tickLine={false} 
                     tick={{ fill: '#888' }}
-                    domain={[0, 'dataMax + 1000']}
+                    domain={[0, 10]}
                   />
                   <Tooltip 
                     contentStyle={{ 
@@ -166,7 +167,7 @@ const DashboardContent: React.FC = () => {
             <CardContent>
               <div className="h-60">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={peakTimeData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                  <BarChart data={emptyPeakTimeData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" />
                     <XAxis 
                       dataKey="name" 
@@ -178,6 +179,7 @@ const DashboardContent: React.FC = () => {
                       axisLine={false} 
                       tickLine={false} 
                       tick={{ fill: '#888' }}
+                      domain={[0, 10]}
                     />
                     <Tooltip 
                       contentStyle={{ 
@@ -220,7 +222,7 @@ const DashboardContent: React.FC = () => {
                 </div>
                 
                 <Button className="w-full bg-urban-teal hover:bg-urban-teal/90">
-                  Zoom
+                  View Details
                 </Button>
               </div>
             </CardContent>

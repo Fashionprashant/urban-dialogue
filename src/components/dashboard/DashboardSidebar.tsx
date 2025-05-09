@@ -14,7 +14,7 @@ interface SidebarItemProps {
 const SidebarItem: React.FC<SidebarItemProps> = ({ icon, label, active = false, onClick }) => (
   <Button
     variant={active ? "secondary" : "ghost"}
-    className={`w-full justify-start ${active ? 'bg-white/10' : ''}`}
+    className={`w-full justify-start ${active ? 'bg-white/10' : ''} z-10`}
     onClick={onClick}
   >
     {icon}
@@ -29,7 +29,7 @@ interface DashboardSidebarProps {
 
 const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ activeSection, onSectionChange }) => {
   return (
-    <div className="w-64 bg-urban-dark-2 border-r border-white/10 h-screen overflow-y-auto fixed">
+    <div className="w-64 bg-urban-dark-2 border-r border-white/10 h-screen overflow-y-auto fixed z-30">
       <div className="flex flex-col h-full">
         <div className="p-4">
           <div className="flex items-center justify-between mb-6">
