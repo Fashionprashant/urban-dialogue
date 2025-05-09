@@ -13,7 +13,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onPricingClick }) => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 z-10 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 z-10 overflow-hidden pt-20">
       {/* Decorative elements */}
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-green-400/20 rounded-full filter blur-3xl"></div>
       <div className="absolute top-1/3 -right-20 w-72 h-72 bg-purple-400/20 rounded-full filter blur-3xl"></div>
@@ -91,12 +91,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onPricingClick }) => {
           </div>
         </div>
       </div>
-      
-      {/* Auth Modal */}
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-      />
     </section>
   );
 };

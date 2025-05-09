@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './button';
 import { Input } from './input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './dialog';
@@ -8,12 +8,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
+  defaultTab?: 'signin' | 'signup';
 }
 
-export function AuthModal({ isOpen, onClose }: AuthModalProps) {
+export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [activeTab, setActiveTab] = useState<string>(defaultTab);
+  
+  useEffect(() => {
+    if (isOpen) {
+      setActiveTab(defaultTab);
+    }
+  }, [isOpen, defaultTab]);
   
   const handleSignIn = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +49,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           </DialogTitle>
         </DialogHeader>
         
-        <Tabs defaultValue="signin" className="w-full">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-4">
             <TabsTrigger value="signin">Sign In</TabsTrigger>
             <TabsTrigger value="signup">Sign Up</TabsTrigger>

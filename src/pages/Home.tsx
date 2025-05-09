@@ -7,6 +7,7 @@ import FeaturesSection from '@/components/home/FeaturesSection';
 import CtaSection from '@/components/home/CtaSection';
 import Footer from '@/components/home/Footer';
 import { useNavigate } from 'react-router-dom';
+import Header from '@/components/layout/Header';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-urban-dark text-white relative overflow-x-hidden">
       <ParticleBackground />
+      <Header transparent />
       <HeroSection onPricingClick={handlePricingClick} />
       <UseCasesSection />
       <FeaturesSection />
