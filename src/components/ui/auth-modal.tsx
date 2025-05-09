@@ -1,29 +1,19 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from './button';
 import { Input } from './input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
-import { Eye, EyeOff, LogIn, UserPlus } from 'lucide-react';
 
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
-  defaultTab?: 'signin' | 'signup';
 }
 
-export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalProps) {
+export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [activeTab, setActiveTab] = useState<string>(defaultTab);
-  const [showPassword, setShowPassword] = useState(false);
-  
-  useEffect(() => {
-    if (isOpen) {
-      setActiveTab(defaultTab);
-    }
-  }, [isOpen, defaultTab]);
   
   const handleSignIn = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,85 +32,50 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
     window.location.href = '/dashboard';
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="backdrop-blur-xl bg-black/60 border border-white/20 sm:max-w-md rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.37)]">
+      <DialogContent className="glass-morphism sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent pb-1">
+          <DialogTitle className="text-xl font-bold text-center text-gradient">
             Welcome to UrbanChat.AI
           </DialogTitle>
         </DialogHeader>
         
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6 bg-black/40 p-1 rounded-lg">
-            <TabsTrigger 
-              value="signin" 
-              className="data-[state=active]:bg-green-500 data-[state=active]:text-white rounded-md transition-all duration-300"
-            >
-              Sign In
-            </TabsTrigger>
-            <TabsTrigger 
-              value="signup" 
-              className="data-[state=active]:bg-green-500 data-[state=active]:text-white rounded-md transition-all duration-300"
-            >
-              Sign Up
-            </TabsTrigger>
+        <Tabs defaultValue="signin" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-4">
+            <TabsTrigger value="signin">Sign In</TabsTrigger>
+            <TabsTrigger value="signup">Sign Up</TabsTrigger>
           </TabsList>
           
           <TabsContent value="signin">
-            <form onSubmit={handleSignIn} className="space-y-5">
-              <div className="space-y-3">
-                <div className="relative">
-                  <Input
-                    type="email"
-                    placeholder="Email address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="bg-black/30 border-white/10 focus:border-green-400/50 h-11 pl-4 transition-all"
-                  />
-                </div>
-                <div className="relative">
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    className="bg-black/30 border-white/10 focus:border-green-400/50 h-11 pl-4 pr-10 transition-all"
-                  />
-                  <button 
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-5 w-5" />
-                    ) : (
-                      <Eye className="h-5 w-5" />
-                    )}
-                  </button>
-                </div>
+            <form onSubmit={handleSignIn} className="space-y-4">
+              <div className="space-y-2">
+                <Input
+                  type="email"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
               </div>
               
-              <Button 
-                type="submit" 
-                className="w-full bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 text-white border-none h-11 font-medium"
-              >
-                <LogIn className="mr-2 h-4 w-4" />
+              <Button type="submit" className="w-full bg-gradient-purple hover:opacity-90">
                 Sign In
               </Button>
               
-              <div className="relative my-6">
+              <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t border-white/10" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-black/50 px-2 text-gray-400">
+                  <span className="bg-urban-dark-2 px-2 text-muted-foreground">
                     Or continue with
                   </span>
                 </div>
@@ -130,7 +85,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                 type="button"
                 variant="outline"
                 onClick={handleGoogleAuth}
-                className="w-full border-white/10 hover:bg-white/5 hover:border-white/20 transition-all h-11"
+                className="w-full"
               >
                 <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                   <path
@@ -156,14 +111,13 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
           </TabsContent>
           
           <TabsContent value="signup">
-            <form onSubmit={handleSignUp} className="space-y-5">
-              <div className="space-y-3">
+            <form onSubmit={handleSignUp} className="space-y-4">
+              <div className="space-y-2">
                 <Input
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="bg-black/30 border-white/10 focus:border-green-400/50 h-11 pl-4 transition-all"
                 />
                 <Input
                   type="email"
@@ -171,45 +125,26 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-black/30 border-white/10 focus:border-green-400/50 h-11 pl-4 transition-all"
                 />
-                <div className="relative">
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Create Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    className="bg-black/30 border-white/10 focus:border-green-400/50 h-11 pl-4 pr-10 transition-all"
-                  />
-                  <button 
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-5 w-5" />
-                    ) : (
-                      <Eye className="h-5 w-5" />
-                    )}
-                  </button>
-                </div>
+                <Input
+                  type="password"
+                  placeholder="Create Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
               </div>
               
-              <Button 
-                type="submit" 
-                className="w-full bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 text-white border-none h-11 font-medium"
-              >
-                <UserPlus className="mr-2 h-4 w-4" />
+              <Button type="submit" className="w-full bg-gradient-purple hover:opacity-90">
                 Create Account
               </Button>
               
-              <div className="relative my-6">
+              <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t border-white/10" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-black/50 px-2 text-gray-400">
+                  <span className="bg-urban-dark-2 px-2 text-muted-foreground">
                     Or continue with
                   </span>
                 </div>
@@ -219,7 +154,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                 type="button"
                 variant="outline"
                 onClick={handleGoogleAuth}
-                className="w-full border-white/10 hover:bg-white/5 hover:border-white/20 transition-all h-11"
+                className="w-full"
               >
                 <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                   <path

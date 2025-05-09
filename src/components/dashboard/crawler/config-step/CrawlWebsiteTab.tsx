@@ -51,6 +51,10 @@ const CrawlWebsiteTab: React.FC<CrawlWebsiteTabProps> = ({
           placeholder="https://example.com"
           className="bg-urban-dark-2 border-urban-dark focus:border-urban-teal"
           {...form.register('url')}
+          onChange={(e) => {
+            form.setValue('url', e.target.value);
+            console.log("URL changed:", e.target.value);
+          }}
         />
         <p className="text-xs text-muted-foreground mt-1">
           Enter the full URL of the website you want to crawl
