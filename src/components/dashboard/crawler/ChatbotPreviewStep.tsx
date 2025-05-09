@@ -37,7 +37,7 @@ const ChatbotPreviewStep: React.FC<ChatbotPreviewStepProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
       {/* Chatbot Preview */}
       <Card className="bg-urban-dark-3 border-none h-[500px] flex flex-col">
         <CardHeader className="pb-2">

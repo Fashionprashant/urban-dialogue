@@ -25,7 +25,7 @@ const WebCrawlerContent: React.FC = () => {
       urlFilter: '',
       extractContent: true,
       followExternalLinks: false,
-      stealthMode: true
+      stealthMode: false
     }
   });
 
@@ -73,14 +73,14 @@ const WebCrawlerContent: React.FC = () => {
 
   return (
     <div className="w-full ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
-      <Tabs value={step} className="w-full">
+      <Tabs value={step} className="w-full max-w-full">
         <StepNavigation 
           step={step} 
           isCrawling={isCrawling} 
           progress={progress} 
         />
         
-        <TabsContent value="crawler" className="mt-0">
+        <TabsContent value="crawler" className="mt-0 max-w-full">
           <CrawlerConfigStep 
             form={form}
             isCrawling={isCrawling}
@@ -91,7 +91,7 @@ const WebCrawlerContent: React.FC = () => {
           />
         </TabsContent>
         
-        <TabsContent value="setup" className="mt-0">
+        <TabsContent value="setup" className="mt-0 max-w-full">
           <ChatbotSetupStep 
             form={form}
             chatbotName={chatbotName}
@@ -103,7 +103,7 @@ const WebCrawlerContent: React.FC = () => {
           />
         </TabsContent>
         
-        <TabsContent value="preview" className="mt-0">
+        <TabsContent value="preview" className="mt-0 max-w-full">
           <ChatbotPreviewStep 
             form={form}
             chatbotName={chatbotName}

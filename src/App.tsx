@@ -8,6 +8,7 @@ import { TransitionProvider } from "./contexts/transition-context";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import Pricing from "./pages/Pricing";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </TransitionProvider>
