@@ -1,4 +1,3 @@
-
 import * as React from "react"
 
 const MOBILE_BREAKPOINT = 768
@@ -25,9 +24,23 @@ export function useIsMobile() {
     }
   }, [])
 
-  return { isMobile, isReady }
+  // Return both the object for backwards compatibility and the boolean for direct use
+  const result = { isMobile, isReady } as const
+  // Allow the hook to also be used as a boolean directly
+  Object.defineProperty(result, "valueOf", {
+    value: function() {
+      return !!isMobile;
+    }
+  })
+
+  return result as { 
+    isMobile: boolean | undefined; 
+    isReady: boolean; 
+    valueOf: () => boolean;
+  } & boolean
 }
 
+// Keep the rest of the hooks unchanged
 export const useIsTablet = () => {
   const [isTablet, setIsTablet] = React.useState<boolean | undefined>(undefined)
 
