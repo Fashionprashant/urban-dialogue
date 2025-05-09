@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { PageTransition } from '@/components/ui/page-transition';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
@@ -14,6 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { LayoutDashboard, Bot, Book, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLocation } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
   // In a real app, this would come from an auth provider
@@ -23,10 +23,21 @@ const Dashboard: React.FC = () => {
     expiry: "June 30"
   };
 
-  const [activeSection, setActiveSection] = useState('dashboard');
+  const location = useLocation();
+  const [activeSection, setActiveSection] = useState(() => {
+    // Check if there's a section in the location state
+    return location.state?.section || 'dashboard';
+  });
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const { isMobile } = useIsMobile();
+
+  useEffect(() => {
+    // Update active section if it changes in the location state
+    if (location.state?.section) {
+      setActiveSection(location.state.section);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     // Simulate loading delay
@@ -52,7 +63,7 @@ const Dashboard: React.FC = () => {
       case 'chatbots':
         return <ChatbotListContent />;
       case 'create-chatbot':
-        return <WebCrawlerContent />;
+        return <WebCrawlerContent skipSetup={location.state?.skipSetup} />;
       case 'knowledge-base':
         return <KnowledgeBaseContent />;
       case 'api':
@@ -61,6 +72,8 @@ const Dashboard: React.FC = () => {
         return <ComingSoonContent title="White Label Service" />;
       case 'settings':
         return <ComingSoonContent title="Settings" />;
+      case 'pricing':
+        return <ComingSoonContent title="Pricing" />;
       default:
         return <DashboardContent />;
     }
@@ -148,7 +161,7 @@ const DashboardSkeleton = () => {
   const { isMobile } = useIsMobile();
   
   return (
-    <div className={`ml-0 ${!isMobile ? 'md:ml-64' : ''} p-6 bg-urban-dark min-h-screen`}>
+    <div className={`p-6 bg-urban-dark min-h-screen ${!isMobile ? 'ml-0 md:ml-64' : ''}`}>
       <div>
         <Skeleton className="h-8 w-64 mb-1" />
         <Skeleton className="h-5 w-96 mb-6" />

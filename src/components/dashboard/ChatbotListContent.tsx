@@ -1,12 +1,22 @@
 
 import React from 'react';
-import { Bot, Plus, Search, Settings } from 'lucide-react';
+import { Bot, Plus, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useNavigate } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ChatbotListContent: React.FC = () => {
+  const navigate = useNavigate();
+  const { isMobile } = useIsMobile();
+  
+  const handleCreateChatbot = () => {
+    // Redirect to dashboard with create-chatbot section active
+    navigate('/dashboard', { state: { section: 'create-chatbot' } });
+  };
+  
   return (
-    <div className="w-full ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
+    <div className={`w-full p-6 bg-urban-dark min-h-screen ${!isMobile ? 'ml-0 md:ml-64' : ''}`}>
       <div>
         <h1 className="text-2xl font-bold mb-1">AI Chatbots</h1>
         <p className="text-muted-foreground mb-6">Manage your AI chatbot instances</p>
@@ -19,7 +29,10 @@ const ChatbotListContent: React.FC = () => {
               className="pl-10 bg-urban-dark-3 border-none"
             />
           </div>
-          <Button className="bg-urban-teal hover:bg-urban-teal/90 w-full md:w-auto">
+          <Button 
+            className="bg-urban-teal hover:bg-urban-teal/90 w-full md:w-auto"
+            onClick={handleCreateChatbot}
+          >
             <Plus className="mr-2 h-4 w-4" />
             Create New Chatbot
           </Button>
@@ -34,7 +47,10 @@ const ChatbotListContent: React.FC = () => {
             Create your first AI chatbot to start engaging with your website visitors. 
             Your chatbots will appear here once created.
           </p>
-          <Button className="bg-urban-teal hover:bg-urban-teal/90">
+          <Button 
+            className="bg-urban-teal hover:bg-urban-teal/90"
+            onClick={handleCreateChatbot}
+          >
             <Plus className="mr-2 h-4 w-4" />
             Create Your First Chatbot
           </Button>

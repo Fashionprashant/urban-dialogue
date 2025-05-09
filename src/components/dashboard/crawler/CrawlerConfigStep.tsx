@@ -16,6 +16,7 @@ interface CrawlerConfigStepProps {
   crawledUrls: CrawledUrl[];
   handleStartCrawling: () => void;
   handleNextStep: () => void;
+  isForKnowledgeBase?: boolean;
 }
 
 const CrawlerConfigStep: React.FC<CrawlerConfigStepProps> = ({
@@ -24,7 +25,8 @@ const CrawlerConfigStep: React.FC<CrawlerConfigStepProps> = ({
   progress,
   crawledUrls,
   handleStartCrawling,
-  handleNextStep
+  handleNextStep,
+  isForKnowledgeBase
 }) => {
   const [selectedTab, setSelectedTab] = useState<'crawl' | 'knowledge'>('crawl');
   const [selectedKnowledgeBase, setSelectedKnowledgeBase] = useState<string | null>(null);
@@ -34,7 +36,7 @@ const CrawlerConfigStep: React.FC<CrawlerConfigStepProps> = ({
       <CardHeader>
         <CardTitle className="text-lg flex items-center">
           <Globe className="mr-2 h-5 w-5 text-urban-teal" />
-          Select Data Source
+          {isForKnowledgeBase ? "Create Knowledge Base" : "Select Data Source"}
         </CardTitle>
       </CardHeader>
       <CardContent className="w-full">
@@ -48,14 +50,16 @@ const CrawlerConfigStep: React.FC<CrawlerConfigStepProps> = ({
               Website URL
               {selectedTab === 'crawl' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-urban-teal"></span>}
             </button>
-            <button
-              type="button"
-              onClick={() => setSelectedTab('knowledge')}
-              className={`pb-2 px-4 relative whitespace-nowrap ${selectedTab === 'knowledge' ? 'text-urban-teal' : 'text-gray-400'}`}
-            >
-              Connect Knowledge Base
-              {selectedTab === 'knowledge' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-urban-teal"></span>}
-            </button>
+            {!isForKnowledgeBase && (
+              <button
+                type="button"
+                onClick={() => setSelectedTab('knowledge')}
+                className={`pb-2 px-4 relative whitespace-nowrap ${selectedTab === 'knowledge' ? 'text-urban-teal' : 'text-gray-400'}`}
+              >
+                Connect Knowledge Base
+                {selectedTab === 'knowledge' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-urban-teal"></span>}
+              </button>
+            )}
           </div>
           
           <div className="w-full">
@@ -66,6 +70,7 @@ const CrawlerConfigStep: React.FC<CrawlerConfigStepProps> = ({
                 progress={progress}
                 handleStartCrawling={handleStartCrawling}
                 handleNextStep={handleNextStep}
+                isForKnowledgeBase={isForKnowledgeBase}
               />
             ) : (
               <KnowledgeBaseTab

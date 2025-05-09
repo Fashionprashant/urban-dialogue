@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { useForm } from 'react-hook-form';
 import { CrawlForm, CrawledUrl, WebCrawlerStep } from './crawler/types';
@@ -9,9 +9,13 @@ import ChatbotSetupStep from './crawler/ChatbotSetupStep';
 import ChatbotPreviewStep from './crawler/ChatbotPreviewStep';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-const WebCrawlerContent: React.FC = () => {
+interface WebCrawlerContentProps {
+  skipSetup?: boolean;
+}
+
+const WebCrawlerContent: React.FC<WebCrawlerContentProps> = ({ skipSetup }) => {
   const { isMobile } = useIsMobile();
-  const [step, setStep] = useState<WebCrawlerStep>('crawler');
+  const [step, setStep] = useState<WebCrawlerStep>(() => skipSetup ? 'crawler' : 'crawler');
   const [isCrawling, setIsCrawling] = useState(false);
   const [progress, setProgress] = useState(0);
   const [crawledUrls, setCrawledUrls] = useState<CrawledUrl[]>([]);
@@ -67,7 +71,13 @@ const WebCrawlerContent: React.FC = () => {
 
   const handleNextStep = () => {
     if (step === 'crawler') {
-      setStep('setup');
+      if (skipSetup) {
+        // If coming from knowledge base, we'll show a dialog to save knowledge base after crawling
+        // This would be implemented in a real application
+        console.log('Save as knowledge base after crawling');
+      } else {
+        setStep('setup');
+      }
     } else if (step === 'setup') {
       setStep('preview');
     }
@@ -90,6 +100,7 @@ const WebCrawlerContent: React.FC = () => {
             crawledUrls={crawledUrls}
             handleStartCrawling={handleStartCrawling}
             handleNextStep={handleNextStep}
+            isForKnowledgeBase={skipSetup}
           />
         </TabsContent>
         

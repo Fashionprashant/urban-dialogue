@@ -3,10 +3,13 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const LeadsContent: React.FC = () => {
+  const { isMobile } = useIsMobile();
+  
   return (
-    <div className="w-full ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
+    <div className={`w-full p-6 bg-urban-dark min-h-screen ${!isMobile ? 'ml-0 md:ml-64' : ''}`}>
       <div className="max-w-full">
         <h1 className="text-2xl font-bold mb-1">Leads Management</h1>
         <p className="text-muted-foreground mb-6">Collect and manage lead information from your chatbot interactions</p>

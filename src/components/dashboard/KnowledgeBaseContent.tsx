@@ -3,10 +3,20 @@ import React from 'react';
 import { Book, Search, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useNavigate } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const KnowledgeBaseContent: React.FC = () => {
+  const navigate = useNavigate();
+  const { isMobile } = useIsMobile();
+  
+  const handleAddKnowledgeBase = () => {
+    // Redirect to dashboard with create-chatbot section active to start the crawler
+    navigate('/dashboard', { state: { section: 'create-chatbot', skipSetup: true } });
+  };
+  
   return (
-    <div className="w-full ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
+    <div className={`w-full p-6 bg-urban-dark min-h-screen ${!isMobile ? 'ml-0 md:ml-64' : ''}`}>
       <div>
         <h1 className="text-2xl font-bold mb-1">Knowledge Base</h1>
         <p className="text-muted-foreground mb-6">Manage your chatbot's knowledge sources</p>
@@ -19,7 +29,10 @@ const KnowledgeBaseContent: React.FC = () => {
               className="pl-10 bg-urban-dark-3 border-none"
             />
           </div>
-          <Button className="bg-urban-teal hover:bg-urban-teal/90 w-full md:w-auto">
+          <Button 
+            className="bg-urban-teal hover:bg-urban-teal/90 w-full md:w-auto"
+            onClick={handleAddKnowledgeBase}
+          >
             <Plus className="mr-2 h-4 w-4" />
             Add Knowledge Base
           </Button>
@@ -34,7 +47,10 @@ const KnowledgeBaseContent: React.FC = () => {
             Add your first knowledge base to train your AI chatbots.
             Your knowledge sources will appear here once created.
           </p>
-          <Button className="bg-urban-teal hover:bg-urban-teal/90">
+          <Button 
+            className="bg-urban-teal hover:bg-urban-teal/90"
+            onClick={handleAddKnowledgeBase}
+          >
             <Plus className="mr-2 h-4 w-4" />
             Create Your First Knowledge Base
           </Button>

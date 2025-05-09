@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { MessageSquare, Clock, Users, Bot, Settings, PanelLeft, FileCog, PaintBucket, Book, Plus, LayoutDashboard } from 'lucide-react';
+import { MessageSquare, Clock, Users, Bot, Settings, PanelLeft, FileCog, PaintBucket, Book, Plus, LayoutDashboard, CreditCard } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface SidebarItemProps {
@@ -94,6 +94,12 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ activeSection, onSe
               label="White Label Service" 
               active={activeSection === 'white-label'}
               onClick={() => onSectionChange('white-label')} 
+            />
+            <SidebarItem 
+              icon={<CreditCard className="w-5 h-5" />} 
+              label="Pricing" 
+              active={activeSection === 'pricing'}
+              onClick={() => onSectionChange('pricing')} 
             />
             <SidebarItem 
               icon={<Settings className="w-5 h-5" />} 
