@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { Bot, Plus, Search } from 'lucide-react';
+import { Bot, Plus, Search, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 const ChatbotListContent: React.FC = () => {
   return (
-    <div className="ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
+    <div className="w-full ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
       <div>
         <h1 className="text-2xl font-bold mb-1">AI Chatbots</h1>
         <p className="text-muted-foreground mb-6">Manage your AI chatbot instances</p>

@@ -30,7 +30,7 @@ const ChatbotSetupStep: React.FC<ChatbotSetupStepProps> = ({
   handleNextStep
 }) => {
   return (
-    <Card className="bg-urban-dark-3 border-none">
+    <Card className="bg-urban-dark-3 border-none max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle className="text-lg flex items-center">
           <Bot className="mr-2 h-5 w-5 text-urban-teal" />

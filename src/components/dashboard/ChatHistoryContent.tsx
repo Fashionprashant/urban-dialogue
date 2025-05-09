@@ -71,7 +71,7 @@ const ChatHistoryContent: React.FC<ChatHistoryContentProps> = ({ selectedChat, o
   // Mobile view handling
   if (isMobile && selectedChat && selectedChatDetails) {
     return (
-      <div className="ml-0 md:ml-64 bg-urban-dark min-h-screen">
+      <div className="w-full ml-0 md:ml-64 bg-urban-dark min-h-screen">
         <ChatDetailView 
           selectedChatDetails={selectedChatDetails}
           onBack={() => onSelectChat(null)}
@@ -83,7 +83,7 @@ const ChatHistoryContent: React.FC<ChatHistoryContentProps> = ({ selectedChat, o
   }
 
   return (
-    <div className={`ml-0 md:ml-64 bg-urban-dark min-h-screen ${selectedChat && !isMobile ? 'flex' : 'block'}`}>
+    <div className={`w-full ml-0 md:ml-64 bg-urban-dark min-h-screen ${selectedChat && !isMobile ? 'flex' : 'block'}`}>
       <div className={`${selectedChat && !isMobile ? 'w-full md:w-1/2 border-r border-white/10' : 'w-full'} p-6`}>
         <div>
           <h1 className="text-2xl font-bold mb-1">Chat History</h1>

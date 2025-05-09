@@ -72,7 +72,7 @@ const WebCrawlerContent: React.FC = () => {
   };
 
   return (
-    <div className="ml-64 p-6 bg-urban-dark min-h-screen">
+    <div className="w-full ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
       <Tabs value={step} className="w-full">
         <StepNavigation 
           step={step} 

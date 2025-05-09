@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 
 const KnowledgeBaseContent: React.FC = () => {
   return (
-    <div className="ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
+    <div className="w-full ml-0 md:ml-64 p-6 bg-urban-dark min-h-screen">
       <div>
         <h1 className="text-2xl font-bold mb-1">Knowledge Base</h1>
         <p className="text-muted-foreground mb-6">Manage your chatbot's knowledge sources</p>
