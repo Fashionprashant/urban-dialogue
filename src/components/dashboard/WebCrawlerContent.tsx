@@ -32,11 +32,26 @@ const WebCrawlerContent: React.FC<WebCrawlerContentProps> = ({ skipSetup }) => {
       extractContent: true,
       followExternalLinks: false,
       stealthMode: false
-    }
+    },
+    mode: 'onChange'
   });
 
+  useEffect(() => {
+    // Log form state when it changes for debugging
+    const subscription = form.watch((value) => {
+      console.log("Web crawler form state:", value);
+    });
+    
+    return () => subscription.unsubscribe();
+  }, [form]);
+
   const handleStartCrawling = () => {
-    if (!form.getValues().url) return;
+    console.log("Starting crawling with URL:", form.getValues().url);
+    
+    if (!form.getValues().url) {
+      console.log("URL is empty, cannot start crawling");
+      return;
+    }
     
     setIsCrawling(true);
     setProgress(0);

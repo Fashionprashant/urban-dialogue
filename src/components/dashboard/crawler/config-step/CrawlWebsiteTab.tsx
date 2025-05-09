@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -25,6 +25,23 @@ const CrawlWebsiteTab: React.FC<CrawlWebsiteTabProps> = ({
   handleNextStep,
   isForKnowledgeBase
 }) => {
+  // Log form values for debugging
+  useEffect(() => {
+    const subscription = form.watch((value) => {
+      console.log("Form values changed:", value);
+    });
+    
+    return () => subscription.unsubscribe();
+  }, [form]);
+
+  const urlValue = form.watch('url');
+  const isUrlEmpty = !urlValue || urlValue.trim() === '';
+  
+  const handleStartClick = () => {
+    console.log("Start button clicked. Form values:", form.getValues());
+    handleStartCrawling();
+  };
+
   return (
     <div className="space-y-4 w-full">
       <div>
@@ -34,6 +51,10 @@ const CrawlWebsiteTab: React.FC<CrawlWebsiteTabProps> = ({
           placeholder="https://example.com"
           className="bg-urban-dark-2 border-urban-dark focus:border-urban-teal"
           {...form.register('url')}
+          onChange={(e) => {
+            form.setValue('url', e.target.value);
+            console.log("URL changed:", e.target.value);
+          }}
         />
         <p className="text-xs text-muted-foreground mt-1">
           Enter the full URL of the website you want to crawl
@@ -118,8 +139,8 @@ const CrawlWebsiteTab: React.FC<CrawlWebsiteTabProps> = ({
         ) : (
           <Button 
             className="bg-urban-teal hover:bg-urban-teal/90 w-full sm:w-auto"
-            disabled={isCrawling || !form.getValues().url}
-            onClick={handleStartCrawling}
+            disabled={isCrawling || isUrlEmpty}
+            onClick={handleStartClick}
           >
             {isCrawling ? "Crawling..." : "Start Crawling"}
           </Button>
