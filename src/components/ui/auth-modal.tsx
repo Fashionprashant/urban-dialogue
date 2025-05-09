@@ -42,7 +42,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="glass-morphism sm:max-w-md">
+      <DialogContent className="glass-morphism border border-white/10 bg-black/70 backdrop-blur-xl sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-center text-gradient">
             Welcome to UrbanChat.AI
@@ -64,6 +64,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="bg-white/5 border-white/10"
                 />
                 <Input
                   type="password"
@@ -71,6 +72,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="bg-white/5 border-white/10"
                 />
               </div>
               
@@ -83,7 +85,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                   <span className="w-full border-t border-white/10" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-urban-dark-2 px-2 text-muted-foreground">
+                  <span className="bg-black/50 px-2 text-muted-foreground">
                     Or continue with
                   </span>
                 </div>
@@ -93,7 +95,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                 type="button"
                 variant="outline"
                 onClick={handleGoogleAuth}
-                className="w-full"
+                className="w-full border-white/10 hover:bg-white/5"
               >
                 <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                   <path
@@ -126,6 +128,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
+                  className="bg-white/5 border-white/10"
                 />
                 <Input
                   type="email"
@@ -133,6 +136,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="bg-white/5 border-white/10"
                 />
                 <Input
                   type="password"
@@ -140,6 +144,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="bg-white/5 border-white/10"
                 />
               </div>
               
@@ -152,7 +157,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                   <span className="w-full border-t border-white/10" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-urban-dark-2 px-2 text-muted-foreground">
+                  <span className="bg-black/50 px-2 text-muted-foreground">
                     Or continue with
                   </span>
                 </div>
@@ -162,7 +167,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'signin' }: AuthModalP
                 type="button"
                 variant="outline"
                 onClick={handleGoogleAuth}
-                className="w-full"
+                className="w-full border-white/10 hover:bg-white/5"
               >
                 <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                   <path
