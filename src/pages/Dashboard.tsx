@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { PageTransition } from '@/components/ui/page-transition';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
@@ -12,6 +11,8 @@ import KnowledgeBaseContent from '@/components/dashboard/KnowledgeBaseContent';
 import ComingSoonContent from '@/components/dashboard/ComingSoonContent';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { LayoutDashboard, Bot, Book, Clock } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Dashboard: React.FC = () => {
   // In a real app, this would come from an auth provider
@@ -167,8 +168,5 @@ const DashboardSkeleton = () => {
     </div>
   );
 };
-
-import { LayoutDashboard } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export default Dashboard;
