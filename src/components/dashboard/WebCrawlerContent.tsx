@@ -7,8 +7,10 @@ import StepNavigation from './crawler/StepNavigation';
 import CrawlerConfigStep from './crawler/CrawlerConfigStep';
 import ChatbotSetupStep from './crawler/ChatbotSetupStep';
 import ChatbotPreviewStep from './crawler/ChatbotPreviewStep';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const WebCrawlerContent: React.FC = () => {
+  const { isMobile } = useIsMobile();
   const [step, setStep] = useState<WebCrawlerStep>('crawler');
   const [isCrawling, setIsCrawling] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -72,7 +74,7 @@ const WebCrawlerContent: React.FC = () => {
   };
 
   return (
-    <div className="w-full p-4 sm:p-6 bg-urban-dark min-h-screen">
+    <div className={`w-full p-4 sm:p-6 bg-urban-dark min-h-screen ${!isMobile ? 'ml-0 md:ml-64' : ''}`}>
       <Tabs value={step} className="w-full max-w-full">
         <StepNavigation 
           step={step} 
