@@ -1,8 +1,9 @@
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/home/Footer';
 import ParticleBackground from '@/components/particles/ParticleBackground';
+import { useLocation } from 'react-router-dom';
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -11,6 +12,13 @@ interface PageLayoutProps {
 }
 
 const PageLayout: React.FC<PageLayoutProps> = ({ children, title, subtitle }) => {
+  const location = useLocation();
+
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div className="min-h-screen bg-urban-dark text-white relative overflow-x-hidden">
       <ParticleBackground />
