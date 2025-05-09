@@ -30,20 +30,20 @@ const CrawlerConfigStep: React.FC<CrawlerConfigStepProps> = ({
   const [selectedKnowledgeBase, setSelectedKnowledgeBase] = useState<string | null>(null);
 
   return (
-    <Card className="bg-urban-dark-3 border-none">
+    <Card className="bg-urban-dark-3 border-none w-full max-w-full">
       <CardHeader>
         <CardTitle className="text-lg flex items-center">
           <Globe className="mr-2 h-5 w-5 text-urban-teal" />
           Select Data Source
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <form className="space-y-6">
-          <div className="flex border-b border-white/10 mb-4">
+      <CardContent className="w-full">
+        <form className="space-y-6 w-full">
+          <div className="flex border-b border-white/10 mb-4 overflow-x-auto">
             <button
               type="button"
               onClick={() => setSelectedTab('crawl')}
-              className={`pb-2 px-4 relative ${selectedTab === 'crawl' ? 'text-urban-teal' : 'text-gray-400'}`}
+              className={`pb-2 px-4 relative whitespace-nowrap ${selectedTab === 'crawl' ? 'text-urban-teal' : 'text-gray-400'}`}
             >
               Website URL
               {selectedTab === 'crawl' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-urban-teal"></span>}
@@ -51,28 +51,30 @@ const CrawlerConfigStep: React.FC<CrawlerConfigStepProps> = ({
             <button
               type="button"
               onClick={() => setSelectedTab('knowledge')}
-              className={`pb-2 px-4 relative ${selectedTab === 'knowledge' ? 'text-urban-teal' : 'text-gray-400'}`}
+              className={`pb-2 px-4 relative whitespace-nowrap ${selectedTab === 'knowledge' ? 'text-urban-teal' : 'text-gray-400'}`}
             >
               Connect Knowledge Base
               {selectedTab === 'knowledge' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-urban-teal"></span>}
             </button>
           </div>
           
-          {selectedTab === 'crawl' ? (
-            <CrawlWebsiteTab 
-              form={form} 
-              isCrawling={isCrawling} 
-              progress={progress}
-              handleStartCrawling={handleStartCrawling}
-              handleNextStep={handleNextStep}
-            />
-          ) : (
-            <KnowledgeBaseTab
-              selectedKnowledgeBase={selectedKnowledgeBase}
-              setSelectedKnowledgeBase={setSelectedKnowledgeBase}
-              handleNextStep={handleNextStep}
-            />
-          )}
+          <div className="w-full">
+            {selectedTab === 'crawl' ? (
+              <CrawlWebsiteTab 
+                form={form} 
+                isCrawling={isCrawling} 
+                progress={progress}
+                handleStartCrawling={handleStartCrawling}
+                handleNextStep={handleNextStep}
+              />
+            ) : (
+              <KnowledgeBaseTab
+                selectedKnowledgeBase={selectedKnowledgeBase}
+                setSelectedKnowledgeBase={setSelectedKnowledgeBase}
+                handleNextStep={handleNextStep}
+              />
+            )}
+          </div>
           
           <CrawlProgress 
             isCrawling={isCrawling}

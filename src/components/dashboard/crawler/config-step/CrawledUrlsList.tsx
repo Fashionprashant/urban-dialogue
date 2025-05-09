@@ -9,9 +9,9 @@ interface CrawledUrlsListProps {
 
 const CrawledUrlsList: React.FC<CrawledUrlsListProps> = ({ crawledUrls }) => {
   return (
-    <div className="mt-8">
+    <div className="w-full mt-8">
       <h3 className="text-md font-medium mb-4">Crawled URLs ({crawledUrls.length})</h3>
-      <div className="space-y-4 max-h-80 overflow-y-auto pr-2">
+      <div className="space-y-4 max-h-80 overflow-y-auto pr-2 w-full">
         {crawledUrls.map((item, index) => (
           <CrawledUrlItem key={index} item={item} />
         ))}
