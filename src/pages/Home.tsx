@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ParticleBackground from '@/components/particles/ParticleBackground';
 import HeroSection from '@/components/home/HeroSection';

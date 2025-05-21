@@ -1,26 +1,24 @@
-
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const Footer: React.FC = () => {
   return (
     <footer className="relative pt-12 pb-8 px-4 sm:px-6 lg:px-8 bg-urban-dark-3 border-t border-white/5 z-10">
       <div className="wave-container">
-        <div className="wave wave-1" style={{ bottom: '100%', height: '150px' }}></div>
+        <div className="wave wave-1" style={{ bottom: "100%", height: "150px" }}></div>
       </div>
-      
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="space-y-6">
             <div className="flex items-center">
               <h2 className="text-2xl font-bold">
                 <span className="text-gradient-primary">Urban</span>
-                <span className="text-white">Chat.AI</span>
+                <span className="text-white">Recruiter.AI</span>
               </h2>
             </div>
             <p className="text-gray-400">
-              Transforming conversations with AI-powered intelligence that understands, responds, and evolves.
+              Hiring reinvented: one unified platform for filtering, interviewing, and hiring—at light speed.
             </p>
             <div className="flex space-x-4">
               <Button variant="ghost" size="icon" className="rounded-full">
@@ -41,36 +39,81 @@ const Footer: React.FC = () => {
               </Button>
             </div>
           </div>
-          
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Solutions</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">
+              Solution
+            </h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Customer Support</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Enterprise</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">E-commerce</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Healthcare</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Education</a></li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  AI Email Filtering
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  AI Video Interviews
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  Calendar Sync
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  Candidate Pipeline
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  Analytics
+                </a>
+              </li>
             </ul>
           </div>
-          
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Company</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">
+              Company
+            </h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">About</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Contact</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Partners</a></li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                  Partners
+                </a>
+              </li>
             </ul>
           </div>
-          
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Subscribe to our newsletter</h3>
-            <p className="text-gray-400 mb-4">The latest news, articles, and resources, sent to your inbox weekly.</p>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">
+              Newsletter
+            </h3>
+            <p className="text-gray-400 mb-4">
+              Get hiring tips, product updates, and AI recruiting trends weekly.
+            </p>
             <form className="flex space-x-2">
-              <Input 
-                type="email" 
-                placeholder="Enter your email" 
+              <Input
+                type="email"
+                placeholder="Enter your email"
                 className="bg-white/5 border-white/10"
               />
               <Button type="submit" className="bg-urban-teal hover:bg-urban-teal/90">
@@ -79,10 +122,9 @@ const Footer: React.FC = () => {
             </form>
           </div>
         </div>
-        
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} UrbanChat.AI. All rights reserved.
+            &copy; {new Date().getFullYear()} UrbanRecruiter.AI. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-white text-sm">
